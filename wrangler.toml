@@ -1,0 +1,15 @@
+name = "buildcache"
+main = "build/worker/shim.mjs"
+compatibility_date = "2023-03-22" 
+
+[build]
+command = "cargo install -q worker-build && worker-build --release"
+
+[durable_objects]
+bindings = [
+  { name = "AC", class_name = "ActionCache" }
+]
+
+[[migrations]]
+tag = "v1" # Should be unique for each entry
+new_classes = ["ActionCache"] # Array of new classes
